@@ -19,6 +19,7 @@ local options = {
 		async = false,
 		timeout_ms = 500,
 	},
+
 }
 
 require("conform").setup(options)

@@ -10,3 +10,4 @@ opt.autoindent = true
 opt.smartindent = true
 opt.relativenumber = true
 opt.list = true
+-- opt.cursorlineopt ='both' -- to enable cursorline!
