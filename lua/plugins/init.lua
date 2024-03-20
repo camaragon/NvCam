@@ -1,37 +1,87 @@
 return {
-  {
-    "stevearc/conform.nvim",
-    -- event = 'BufWritePre' -- uncomment for format on save
-    config = function()
-      require "configs.conform"
-    end,
-  },
+	{
+		"stevearc/conform.nvim",
+		config = function()
+			require("configs.conform")
+		end,
+		event = { "BufReadPre", "BufNewFile" },
+	},
 
-  -- {
-  --   "neovim/nvim-lspconfig",
-  --   config = function()
-  --     require("nvchad.configs.lspconfig").defaults()
-  --     require "configs.lspconfig"
-  --   end,
-  -- },
+	{
+		"mfussenegger/nvim-lint",
+		config = function()
+			require("configs.linting")
+		end,
+		event = { "BufReadPre", "BufNewFile" },
+	},
 
-  -- {
-  -- 	"williamboman/mason.nvim",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"lua-language-server", "stylua",
-  -- 			"html-lsp", "css-lsp" , "prettier"
-  -- 		},
-  -- 	},
-  -- },
-  --
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+	{
+		"nvim-tree/nvim-tree.lua",
+		opts = {
+			git = { enable = true },
+		},
+	},
+
+	{
+		"neovim/nvim-lspconfig",
+		config = function()
+			require("nvchad.configs.lspconfig").defaults()
+			require("configs.lspconfig")
+		end,
+	},
+
+	{
+		"williamboman/mason.nvim",
+		opts = {
+			ensure_installed = {
+				"rust-analyzer",
+				"prettier",
+				"stylua",
+				"tsserver",
+				"typescript-language-server",
+				"luaformatter",
+			},
+		},
+	},
+
+	{
+		"nvim-treesitter/nvim-treesitter",
+		opts = {
+			ensure_installed = {
+				-- defaults
+				"vim",
+				"lua",
+				"vimdoc",
+
+				-- web dev
+				"html",
+				"css",
+				"javascript",
+				"typescript",
+				"tsx",
+
+				-- low level
+				"c",
+				"zig",
+			},
+		},
+	},
+
+	{
+		"windwp/nvim-ts-autotag",
+		event = "InsertEnter",
+		config = true,
+	},
+
+	{
+		"github/copilot.vim",
+		lazy = false,
+	},
+
+	{
+		"christoomey/vim-tmux-navigator",
+		lazy = false,
+	},
+
+	{ "tpope/vim-fugitive", event = "BufRead" },
 }

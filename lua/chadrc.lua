@@ -2,12 +2,13 @@
 local M = {}
 
 M.ui = {
-	theme = "onedark",
-
+  theme = "catppuccin",
+  
 	-- hl_override = {
 	-- 	Comment = { italic = true },
 	-- 	["@comment"] = { italic = true },
 	-- },
+
 }
 
 return M
