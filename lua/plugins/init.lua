@@ -18,7 +18,7 @@ return {
   {
     "nvim-tree/nvim-tree.lua",
     opts = {
-      git = { enable = true },
+      git = { enable = true, ignore = false },
     },
   },
 
@@ -37,7 +37,6 @@ return {
         "rust-analyzer",
         "prettier",
         "stylua",
-        "tsserver",
         "typescript-language-server",
         "luaformatter",
       },
@@ -63,6 +62,11 @@ return {
         -- low level
         "c",
         "zig",
+        "prisma",
+        "yaml",
+        "graphql",
+        "json",
+        "toml",
       },
     },
   },

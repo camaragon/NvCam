@@ -5,11 +5,11 @@ local on_init = configs.on_init
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "html", "cssls", "jsonls", "tsserver", "vimls", "yamlls", "lua_ls" }
+local servers = { "cssls", "graphql", "html", "jsonls", "lua_ls", "prismals", "tsserver", "vimls", "yamlls" }
 
 for _, lsp in ipairs(servers) do
   if lsp == "lua_ls" then
-    require("nvim-treesitter.configs").setup {
+    lspconfig[lsp].setup {
       on_init = on_init,
       on_attach = on_attach,
       capabilities = capabilities,
