@@ -88,4 +88,29 @@ return {
   },
 
   { "tpope/vim-fugitive", event = "BufRead" },
+
+  {
+    "kylechui/nvim-surround",
+    version = "*",
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup()
+    end,
+  },
+
+  {
+    "stevearc/oil.nvim",
+    event = "VimEnter",
+    config = function()
+      require("oil").setup()
+    end,
+  },
+
+  {
+    "smoka7/hop.nvim",
+    version = "*",
+    config = function()
+      require("hop").setup { keys = "etovxqpdygfblzhckisuran" }
+    end,
+  },
 }

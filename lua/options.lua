@@ -9,7 +9,6 @@ opt.shiftwidth = 4
 opt.expandtab = false
 opt.autoindent = true
 opt.smartindent = true
-opt.relativenumber = true
+opt.relativenumber = false
 opt.list = true
 opt.cursorlineopt = "both" -- to enable cursorline!
-
