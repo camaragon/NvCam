@@ -48,6 +48,7 @@ map("n", "<leader>gs", ":Git<CR>", { desc = "Git status" })
 -- Lspconfig mappings
 map("n", "<leader>f", "<cmd>lua vim.diagnostic.open_float({border = 'rounded' })<CR>", { desc = "Open LSP float" })
 map("n", "<leader>lf", emptyMap)
+map("n", "K", vim.lsp.buf.hover, { desc = "Show hover doc" })
 
 -- Nvterm mappings
 map("n", "<leader>h", "<cmd>silent !tmux split-window -v<CR>", { desc = "New Horizontal Term" })
@@ -81,3 +82,19 @@ end, { noremap = true })
 map("", "<leader>g", function()
   hop.hint_vertical()
 end, { noremap = true })
+
+-- Fold mappings
+map("n", "zR", require("ufo").openAllFolds, { desc = "Open all folds" })
+map("n", "zM", require("ufo").closeAllFolds, { desc = "Close all folds" })
+map("n", "zK", function()
+  local winid = require("ufo").peekFoldedLinesUnderCursor()
+  if not winid then
+    vim.lsp.buf.hover()
+  end
+end, { desc = "Peek Fold" })
+
+require("ufo").setup {
+  provider_selector = function(bufnr, filetype, buftype)
+    return { "lsp", "indent" }
+  end,
+}
