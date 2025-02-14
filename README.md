@@ -1,2 +1,2 @@
-# starter
-Starter config for NvChad
+# NvCam
+Neovim config based off NvChad
