@@ -5,7 +5,8 @@ local on_init = configs.on_init
 local capabilities = configs.capabilities
 
 local lspconfig = require "lspconfig"
-local servers = { "bashls", "cssls", "graphql", "html", "jsonls", "lua_ls", "prismals", "ts_ls", "vimls", "yamlls" }
+local servers =
+  { "bashls", "cssls", "graphql", "html", "jsonls", "lua_ls", "prismals", "rust_analyzer", "ts_ls", "vimls", "yamlls" }
 
 for _, lsp in ipairs(servers) do
   if lsp == "lua_ls" then
