@@ -32,6 +32,7 @@ map("n", "<leader>q", "<cmd>q!<cr>", { desc = "Force Quit" })
 map("n", "<leader>s", "<cmd>w!<cr>", { desc = "Save File" })
 map("n", "<leader>rp", ":let @+=expand('%:~:.')<CR>", { desc = "Copy Relative Path" })
 map("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP Code Action" })
 
 -- General mappings
 map("n", "<C-h>", "<cmd> TmuxNavigateLeft<CR>", { desc = "Window left" })
