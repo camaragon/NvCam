@@ -1,6 +1,51 @@
-require("nvchad.configs.lspconfig").defaults()
+local configs = require "nvchad.configs.lspconfig"
 
-local servers = { "html", "cssls" }
-vim.lsp.enable(servers)
+local on_attach = configs.on_attach
+local on_init = configs.on_init
+local capabilities = configs.capabilities
 
--- read :h vim.lsp.config for changing options of lsp servers 
+-- Explicitly add folding capability
+capabilities.textDocument.foldingRange = {
+  dynamicRegistration = false,
+  lineFoldingOnly = true,
+}
+
+local lspconfig = require "lspconfig"
+local servers = {
+  "bashls",
+  "cssls",
+  "graphql",
+  "html",
+  "jsonls",
+  "lua_ls",
+  "prismals",
+  "pyright",
+  "rust_analyzer",
+  "tailwindcss",
+  "ts_ls",
+  "vimls",
+  "yamlls",
+}
+
+for _, lsp in ipairs(servers) do
+  if lsp == "lua_ls" then
+    lspconfig[lsp].setup {
+      on_init = on_init,
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        Lua = {
+          diagnostics = {
+            globals = { "vim" },
+          },
+        },
+      },
+    }
+  else
+    lspconfig[lsp].setup {
+      on_init = on_init,
+      on_attach = on_attach,
+      capabilities = capabilities,
+    }
+  end
+end
