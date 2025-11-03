@@ -52,8 +52,4 @@ local options = {
   },
 }
 
--- Setup Conform with the defined options.
-require("conform").setup(options)
-
--- Optionally, set formatexpr for Vim to use Conform when invoking formatting commands.
-vim.opt.formatexpr = [[v:lua.require("conform").formatexpr()]]
+return options
