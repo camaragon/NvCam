@@ -16,6 +16,7 @@ return {
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"
     end,
+    -- Note: configs/lspconfig.lua now uses vim.lsp.config() API (nvim 0.11+)
   },
 
   {

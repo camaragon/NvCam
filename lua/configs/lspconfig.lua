@@ -1,16 +1,32 @@
-local configs = require "nvchad.configs.lspconfig"
+-- Using vim.lsp.config API (nvim 0.11+) instead of deprecated require("lspconfig")
+local nvchad_configs = require "nvchad.configs.lspconfig"
 
-local on_attach = configs.on_attach
-local on_init = configs.on_init
-local capabilities = configs.capabilities
+local capabilities = nvchad_configs.capabilities
 
--- Explicitly add folding capability
+-- Add folding capability
 capabilities.textDocument.foldingRange = {
   dynamicRegistration = false,
   lineFoldingOnly = true,
 }
 
-local lspconfig = require "lspconfig"
+-- Base config for all servers
+vim.lsp.config("*", {
+  capabilities = capabilities,
+  on_init = nvchad_configs.on_init,
+})
+
+-- Lua gets custom settings
+vim.lsp.config("lua_ls", {
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { "vim" },
+      },
+    },
+  },
+})
+
+-- Enable all servers
 local servers = {
   "bashls",
   "biome",
@@ -28,25 +44,4 @@ local servers = {
   "yamlls",
 }
 
-for _, lsp in ipairs(servers) do
-  if lsp == "lua_ls" then
-    lspconfig[lsp].setup {
-      on_init = on_init,
-      on_attach = on_attach,
-      capabilities = capabilities,
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
-        },
-      },
-    }
-  else
-    lspconfig[lsp].setup {
-      on_init = on_init,
-      on_attach = on_attach,
-      capabilities = capabilities,
-    }
-  end
-end
+vim.lsp.enable(servers)
