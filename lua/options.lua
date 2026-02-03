@@ -11,9 +11,12 @@ opt.autoindent = true
 opt.smartindent = true
 opt.clipboard = "unnamedplus"
 opt.relativenumber = false
+opt.cursorlineopt = "both"
+opt.scrolloff = 8
+opt.sidescrolloff = 8
 opt.list = true
-opt.cursorlineopt = "both" -- to enable cursorline!
-opt.foldmethod = "expr"
-opt.foldexpr = "nvim_treesitter#foldexpr()"
+opt.listchars = { tab = "→ ", trail = "·", nbsp = "␣" }
+
+-- Folding handled by UFO (provider: lsp + indent)
 opt.foldlevel = 99
 opt.foldlevelstart = 99

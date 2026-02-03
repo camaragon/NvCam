@@ -1,254 +1,206 @@
 # NvCam
 
-A personalized Neovim configuration built on top of [NvChad v2.5](https://nvchad.com/), optimized for full-stack development with enhanced navigation, formatting, and development tools.
+A personalized Neovim configuration built on top of [NvChad v2.5](https://nvchad.com/), optimized for full-stack TypeScript and Rust development.
+
+Requires **Neovim 0.11+** (uses `vim.lsp.config` API).
 
 ## Features
 
 ### Language Support
-- **LSP Servers**: Bash, CSS, GraphQL, HTML, JSON, Lua, Prisma, Python, Rust, Tailwind CSS, TypeScript, Vim, YAML
-- **Formatters**: Biome, Prettier, Stylua, Ruff (Python), and language-specific formatters
-- **Linting**: ESLint for JavaScript/TypeScript projects
-- **Syntax Highlighting**: Comprehensive Treesitter support for web development, systems programming, and configuration files
+- **LSP**: Bash, Biome, CSS, GraphQL, HTML, JSON, Lua, Prisma, Python (Pyright), Rust Analyzer, Tailwind CSS, TypeScript, Vim, YAML
+- **Formatters**: Biome (auto-detected via `biome.json`), Prettier, Stylua, Ruff, Sleek (SQL), latexindent, xmlformat
+- **Linting**: ESLint (auto-detected via config files), Ruff for Python
+- **Treesitter**: Full syntax highlighting for web dev, systems programming, and config files
 
 ### Development Tools
-- **GitHub Copilot**: AI-powered code completion
-- **DAP (Debug Adapter Protocol)**: Full debugging support with UI
-- **Auto-formatting**: Smart formatter selection based on project configuration
-- **UFO**: Advanced code folding with LSP integration
-- **Crates.nvim**: Cargo.toml dependency management for Rust projects
-- **Tailwind Tools**: Enhanced Tailwind CSS development experience
+- **GitHub Copilot** — AI code completion
+- **DAP** — Debug Adapter Protocol with UI (Python, extensible)
+- **Conform.nvim** — Format on save with smart formatter selection
+- **UFO** — Advanced code folding (LSP + indent providers)
+- **Crates.nvim** — Cargo.toml dependency management
+- **Tailwind Tools** — Enhanced Tailwind CSS DX
 
-### Enhanced Navigation
-- **Hop.nvim**: Lightning-fast cursor movement with character/word jumping
-- **Oil.nvim**: File directory navigation (replaces netrw)
-- **Tmux Integration**: Seamless pane navigation between Neovim and tmux
-- **nvim-surround**: Easy manipulation of surrounding characters
-- **nvim-ts-autotag**: Auto-close and rename HTML/JSX tags
+### Navigation
+- **Hop.nvim** — Fast cursor movement (words, lines, characters)
+- **Oil.nvim** — File browser that replaces netrw
+- **Tmux Navigator** — Seamless `<C-h/j/k/l>` between Neovim and tmux panes
+- **nvim-surround** — Manipulate surrounding characters
+- **nvim-ts-autotag** — Auto-close and rename HTML/JSX tags
 
-### Git Integration
-- **vim-fugitive**: Comprehensive Git commands within Neovim
-- **Gitsigns**: Git blame, diff, and hunk navigation
+### Git
+- **vim-fugitive** — Git commands (`:Git`, blame, diff)
+- **Gitsigns** — Inline blame, hunk navigation
+
+### Clipboard
+- **OSC 52** — System clipboard works over SSH (no X11/Wayland needed). Requires terminal support (iTerm2, Alacritty, kitty, WezTerm). For tmux, add `set -g set-clipboard on` to your `~/.tmux.conf`.
 
 ## Installation
 
 ### Prerequisites
-- Neovim 0.10+
+- Neovim 0.11+ (`brew install neovim --HEAD` or [unstable PPA](https://launchpad.net/~neovim-ppa/+archive/ubuntu/unstable))
 - Git
-- A [Nerd Font](https://www.nerdfonts.com/) (recommended: JetBrainsMono Nerd Font)
+- A [Nerd Font](https://www.nerdfonts.com/) (recommended: JetBrainsMono)
 - Node.js (for LSP servers and formatters)
-- Ripgrep (for telescope grep)
+- Ripgrep (`rg`, for Telescope grep)
 
 ### Quick Install
 
 ```bash
-# Backup your existing config (if any)
+# Backup existing config
 mv ~/.config/nvim ~/.config/nvim.backup
 
-# Clone NvCam
+# Clone
 git clone https://github.com/camaragon/NvCam ~/.config/nvim
 
-# Start Neovim (plugins will install automatically)
+# Launch (plugins auto-install via lazy.nvim)
 nvim
 ```
 
-### Post-Install
-
-After first launch, run:
+After first launch:
 ```vim
 :MasonInstallAll
 ```
 
-This will install all configured LSP servers, formatters, and linters.
-
-## Configuration Structure
+## Structure
 
 ```
 ~/.config/nvim/
-├── init.lua                 # Main entry point
+├── init.lua                  # Entry point (OSC 52 clipboard, lazy.nvim bootstrap)
 ├── lua/
-│   ├── options.lua          # Vim options and settings
-│   ├── mappings.lua         # Custom keybindings
-│   ├── autocmds.lua         # Auto commands
-│   ├── chadrc.lua           # NvChad configuration
+│   ├── options.lua           # Editor settings
+│   ├── mappings.lua          # Keybindings
+│   ├── autocmds.lua          # Auto commands (lint, format, yank highlight)
+│   ├── chadrc.lua            # NvChad theme config (ayu_dark)
 │   ├── configs/
-│   │   ├── conform.lua      # Formatter configuration
-│   │   ├── lspconfig.lua    # LSP server setup
-│   │   └── linting.lua      # Linting configuration
+│   │   ├── conform.lua       # Formatter config (Biome/Prettier auto-detect)
+│   │   ├── lspconfig.lua     # LSP servers (vim.lsp.config API)
+│   │   └── linting.lua       # Linter config (ESLint auto-detect)
 │   └── plugins/
-│       └── init.lua         # Plugin specifications
-└── lazy-lock.json           # Locked plugin versions
+│       └── init.lua          # Plugin specs
+└── lazy-lock.json            # Locked plugin versions
 ```
 
 ## Key Mappings
 
-### General
-| Mapping | Action |
-|---------|--------|
-| `<Space>` | Leader key |
-| `;` | Enter command mode |
-| `jk` | Exit insert mode |
-| `<leader>s` | Save file |
-| `<leader>q` | Force quit |
+Leader: `<Space>`
 
-### File Navigation
-| Mapping | Action |
-|---------|--------|
-| `-` | Open Oil file browser |
+### General
+| Key | Action |
+|-----|--------|
+| `;` | Command mode |
+| `jk` | Exit insert mode |
+| `<leader>s` | Save |
+| `<leader>q` | Force quit |
+| `<leader>rp` | Copy relative file path |
+
+### Navigation
+| Key | Action |
+|-----|--------|
+| `-` | Oil file browser |
 | `<leader>ff` | Find files (Telescope) |
 | `<leader>fg` | Live grep (Telescope) |
+| `<leader>w` | Hop to word |
+| `<leader>g` | Hop vertical |
+| `f/F/t/T` | Hop character (current line) |
+| `<C-h/j/k/l>` | Navigate Neovim/tmux panes |
 
-### LSP & Code
-| Mapping | Action |
-|---------|--------|
+### Code
+| Key | Action |
+|-----|--------|
 | `<leader>fm` | Format file |
 | `<leader>ca` | Code actions |
 | `<leader>l` | Trigger linting |
-| `K` | Show hover documentation |
+| `<leader>f` | Open diagnostic float |
+| `K` | Hover docs |
 | `gd` | Go to definition |
-| `gr` | Show references |
+| `gD` | Go to declaration |
 
-### Hop Navigation
-| Mapping | Action |
-|---------|--------|
-| `<leader>w` | Hop to words |
-| `<leader>g` | Hop vertically |
-| `f/F/t/T` | Enhanced character navigation |
+### Folding (UFO)
+| Key | Action |
+|-----|--------|
+| `zR` | Open all folds |
+| `zM` | Close all folds |
+| `zK` | Peek fold |
 
 ### Git
-| Mapping | Action |
-|---------|--------|
-| `<leader>gl` | Git blame all lines |
-| `<leader>gg` | Toggle current line blame |
-| `<leader>di` | Vertical Git diff |
+| Key | Action |
+|-----|--------|
 | `<leader>gs` | Git status |
+| `<leader>gl` | Git blame (all lines) |
+| `<leader>gg` | Toggle inline blame |
+| `<leader>di` | Vertical diff |
 
-### Debugging (DAP)
-| Mapping | Action |
-|---------|--------|
+### Debug (DAP)
+| Key | Action |
+|-----|--------|
 | `<leader>db` | Toggle breakpoint |
 | `<leader>dc` | Continue |
 | `<leader>ds` | Step over |
 | `<leader>di` | Step into |
 | `<leader>do` | Step out |
+| `<leader>dus` | Open debug sidebar |
 
-### Tmux Integration
-| Mapping | Action |
-|---------|--------|
-| `<leader>h` | New horizontal tmux pane |
-| `<leader>v` | New vertical tmux pane |
-| `<C-h/j/k/l>` | Navigate between Neovim/tmux panes |
+### Terminal
+| Key | Action |
+|-----|--------|
+| `<leader>h` | Horizontal tmux split |
+| `<leader>v` | Vertical tmux split |
+| `<leader>ft` | Floating terminal |
 
-## Formatter Configuration
+## Formatter Auto-Detection
 
-NvCam intelligently selects formatters based on your project:
+Formatters are selected per-project:
 
-- **Biome**: Used automatically if `biome.json` exists in project root
-- **Prettier**: Fallback for web technologies (JS/TS/JSX/HTML/CSS)
-- **Stylua**: Lua formatting
-- **Ruff**: Python formatting and import organization
-- **Language-specific**: Rust Analyzer for Rust, etc.
-
-Format on save can be enabled by uncommenting in `lua/plugins/init.lua`:
-```lua
-{
-  "stevearc/conform.nvim",
-  event = 'BufWritePre', -- uncomment for format on save
-  ...
-}
-```
+- **`biome.json` exists** → Biome for JS/TS/CSS/JSON/GraphQL
+- **No biome.json** → Prettier (via prettierd) as fallback
+- **Rust** → rust-analyzer format on save
+- **Python** → Ruff format + import organization
+- **Lua** → Stylua
 
 ## Editor Settings
 
-- **Indentation**: 4-space tabs (hard tabs, not spaces)
-- **Column Guide**: 80 characters
-- **Line Numbers**: Absolute (relative disabled)
-- **Folding**: Tree-sitter based with UFO
-- **Cursor Line**: Highlighted
-
-## Plugins
-
-### Core
-- **NvChad/NvChad**: Base configuration framework
-- **folke/lazy.nvim**: Plugin manager
-
-### LSP & Completion
-- **neovim/nvim-lspconfig**: LSP configurations
-- **williamboman/mason.nvim**: LSP/formatter installer
-
-### Formatting & Linting
-- **stevearc/conform.nvim**: Formatter manager
-- **mfussenegger/nvim-lint**: Linting engine
-
-### Navigation
-- **smoka7/hop.nvim**: Fast cursor movement
-- **stevearc/oil.nvim**: File browser
-- **christoomey/vim-tmux-navigator**: Tmux integration
-
-### Git
-- **tpope/vim-fugitive**: Git commands
-- **lewis6991/gitsigns.nvim**: Git decorations
-
-### Editing
-- **kylechui/nvim-surround**: Surround manipulation
-- **windwp/nvim-ts-autotag**: Auto-close tags
-- **numToStr/Comment.nvim**: Smart commenting
-- **JoosepAlviste/nvim-ts-context-commentstring**: Context-aware comments
-
-### Development
-- **github/copilot.vim**: AI code completion
-- **mfussenegger/nvim-dap**: Debug adapter protocol
-- **mfussenegger/nvim-dap-python**: Python debugging
-- **saecki/crates.nvim**: Rust dependency management
-- **luckasRanarison/tailwind-tools.nvim**: Tailwind CSS tools
-
-### UI Enhancements
-- **kevinhwang91/nvim-ufo**: Advanced folding
-- **nvim-treesitter/nvim-treesitter**: Syntax highlighting
-- **nvim-treesitter/playground**: Treesitter exploration
+| Setting | Value |
+|---------|-------|
+| Indentation | 4-space hard tabs |
+| Column guide | 80 chars |
+| Line numbers | Absolute |
+| Scroll offset | 8 lines |
+| Whitespace | Visible (tabs: `→`, trailing: `·`) |
+| Theme | ayu_dark (italic comments) |
+| Folding | UFO (LSP + indent) |
+| Clipboard | System (OSC 52 over SSH) |
 
 ## Updating
 
-```bash
-# Update plugins
-:Lazy sync
-
-# Update NvChad base
-:NvChadUpdate
-
-# Update all Mason packages
-:MasonUpdate
+```vim
+:Lazy sync          " Update plugins
+:NvChadUpdate       " Update NvChad base
+:MasonUpdate        " Update LSP servers and formatters
 ```
 
 ## Troubleshooting
 
-### Theme not loading
-If you see errors about missing base46 cache files, regenerate them:
+**Theme not loading:**
 ```vim
 :lua require('base46').load_all_highlights()
 ```
 
-### LSP server not working
-Check if the server is installed:
+**LSP server missing:**
 ```vim
-:Mason
+:Mason              " Check installed servers
+:MasonInstall <name>
 ```
 
-Install missing servers:
-```vim
-:MasonInstall <server-name>
-```
-
-### Formatter not working
-1. Check if formatter is installed via Mason
-2. Verify formatter configuration in `lua/configs/conform.lua`
-3. Check for project-specific config files (e.g., `biome.json`, `.prettierrc`)
+**Clipboard not working over SSH:**
+1. Ensure your terminal supports OSC 52 (iTerm2, kitty, Alacritty, WezTerm)
+2. iTerm2: Settings → General → Selection → ✅ "Applications in terminal may access clipboard"
+3. tmux: Add `set -g set-clipboard on` to `~/.tmux.conf`
 
 ## Credits
 
-- [NvChad](https://nvchad.com/) - Base configuration framework
-- [LazyVim](https://github.com/LazyVim/LazyVim) - Inspiration for starter structure
-- All plugin authors and contributors
+- [NvChad](https://nvchad.com/) — Base configuration framework
+- All plugin authors
 
 ## License
 
-MIT License - see [LICENSE](LICENSE) for details
+MIT

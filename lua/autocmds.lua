@@ -7,9 +7,12 @@ local augroup = vim.api.nvim_create_augroup
 autocmd("LspAttach", {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
+    if not client then return end
 
-    -- Disable semantic tokens to avoid conflicts
-    client.server_capabilities.semanticTokensProvider = nil
+    -- Disable semantic tokens to avoid conflicts with Treesitter
+    if client:supports_method "textDocument/semanticTokens" then
+      client.server_capabilities.semanticTokensProvider = nil
+    end
 
     -- Enable format-on-save only for Rust
     if client.name == "rust_analyzer" then
@@ -28,6 +31,14 @@ autocmd({ "BufEnter", "BufWritePost", "InsertLeave" }, {
   group = augroup("lint", { clear = true }),
   callback = function()
     require("lint").try_lint()
+  end,
+})
+
+-- Highlight yanked text briefly
+autocmd("TextYankPost", {
+  group = augroup("highlight-yank", { clear = true }),
+  callback = function()
+    vim.hl.on_yank { higroup = "IncSearch", timeout = 200 }
   end,
 })
 
