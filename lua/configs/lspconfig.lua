@@ -13,6 +13,7 @@ capabilities.textDocument.foldingRange = {
 local lspconfig = require "lspconfig"
 local servers = {
   "bashls",
+  "biome",
   "cssls",
   "graphql",
   "html",

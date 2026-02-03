@@ -1,8 +1,8 @@
 -- Optionally, define a function to choose a formatter based on the presence of a biome.json file.
 local function get_formatter()
-  -- If a biome.json file is found in the current working directory, use the "biome-check" chain.
+  -- If a biome.json file is found in the current working directory, use the "biome" formatter.
   if vim.fn.findfile("biome.json", vim.fn.getcwd() .. ";") ~= "" then
-    return { "biome-check", "prettierd", "prettier", stop_after_first = true }
+    return { "biome" }
   else
     return { "prettierd", "prettier", stop_after_first = true }
   end
@@ -15,31 +15,32 @@ local options = {
 
   -- Define formatters by filetype.
   formatters_by_ft = {
-    css = { "biome-check", "prettierd", "prettier", stop_after_first = true },
-    html = { "biome-check", "prettierd", "prettier", stop_after_first = true },
-    javascript = get_formatter, -- use the dynamic formatter
-    javascriptreact = get_formatter, -- use the dynamic formatter
-    json = { "biome-check", "prettierd", "prettier", stop_after_first = true },
-    jsonc = { "biome-check", "prettierd", "prettier", stop_after_first = true },
+    css = get_formatter,
+    html = get_formatter,
+    javascript = get_formatter,
+    javascriptreact = get_formatter,
+    json = get_formatter,
+    jsonc = get_formatter,
     lua = { "stylua" },
     sql = { "sleek" },
     tex = { "latexindent" },
-    typescript = { "biome-check", "prettierd", "prettier", stop_after_first = true },
-    typescriptreact = { "biome-check", "prettierd", "prettier", stop_after_first = true },
-    vue = { "biome-check", "prettierd", "prettier", stop_after_first = true },
-    graphql = { "biome-check", "prettierd", "prettier", stop_after_first = true },
+    typescript = get_formatter,
+    typescriptreact = get_formatter,
+    vue = get_formatter,
+    graphql = get_formatter,
     python = { "ruff_format", "ruff_organize_imports" },
     yaml = { "prettierd", "prettier", stop_after_first = true },
     xml = { "xmlformat" },
-    markdown = get_formatter, -- can also use the dynamic formatter for markdown
+    markdown = get_formatter,
     ["*"] = { "injected" },
   },
 
   -- Additional options for specific formatters.
   formatters = {
     latexindent = { prepend_args = { "-l", "-m", "--logfile=/dev/null" } },
-    biome = { require_cwd = true },
-    ["biome-check"] = { require_cwd = true },
+    biome = {
+      require_cwd = true,
+    },
     sleek = { prepend_args = { "--indent-spaces", "2" } },
     xmlformat = { prepend_args = { "--selfclose" } },
   },
