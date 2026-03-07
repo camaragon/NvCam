@@ -221,6 +221,58 @@ return {
     end,
   },
 
+  -- todo-comments.nvim — Highlight and search TODO/FIXME/HACK/NOTE in codebase
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {},
+  },
+
+  -- nvim-spectre — Project-wide find and replace with regex + live preview
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "Spectre",
+    opts = {},
+  },
+
+  -- trouble.nvim — Better diagnostics list with workspace-wide errors/warnings
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "Trouble",
+    opts = {},
+  },
+
+  -- avante.nvim — AI chat inside neovim (Claude/GPT context-aware code editing)
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    version = false,
+    build = "make",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    opts = {
+      provider = "copilot",
+      copilot = {
+        model = "claude-sonnet-4.6",
+      },
+      mappings = {
+        ask = "<leader>aa",
+        edit = "<leader>ae",
+        refresh = "<leader>ar",
+        toggle = {
+          default = "<leader>at",
+        },
+      },
+    },
+  },
+
   -- "nvim-lua/plenary.nvim",
   --
   -- {
