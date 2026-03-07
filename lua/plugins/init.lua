@@ -71,6 +71,7 @@ return {
 
         -- low level
         "c",
+        "rust",
         "zig",
         "python",
         "prisma",
