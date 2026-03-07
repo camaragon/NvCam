@@ -221,6 +221,14 @@ return {
     end,
   },
 
+  -- todo-comments.nvim — Highlight and search TODO/FIXME/HACK/NOTE in codebase
+  {
+    "folke/todo-comments.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    event = { "BufReadPre", "BufNewFile" },
+    opts = {},
+  },
+
   -- nvim-spectre — Project-wide find and replace with regex + live preview
   {
     "nvim-pack/nvim-spectre",

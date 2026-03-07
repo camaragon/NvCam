@@ -61,6 +61,12 @@ map(
   { desc = "Toggle Floating Term" }
 )
 
+-- Todo-comments mappings
+map("n", "<leader>td", "<cmd>TodoTelescope<CR>", { desc = "Todo: Search all TODOs" })
+map("n", "<leader>tl", "<cmd>Trouble todo toggle<CR>", { desc = "Todo: List in Trouble" })
+map("n", "]t", function() require("todo-comments").jump_next() end, { desc = "Todo: Next" })
+map("n", "[t", function() require("todo-comments").jump_prev() end, { desc = "Todo: Previous" })
+
 -- Spectre mappings (project-wide find & replace)
 map("n", "<leader>sr", "<cmd>lua require('spectre').open()<CR>", { desc = "Spectre: Open search & replace" })
 map("n", "<leader>sw", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", { desc = "Spectre: Search current word" })
