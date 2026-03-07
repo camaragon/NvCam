@@ -61,6 +61,12 @@ map(
   { desc = "Toggle Floating Term" }
 )
 
+-- Trouble mappings
+map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Trouble: Workspace Diagnostics" })
+map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Trouble: Buffer Diagnostics" })
+map("n", "<leader>xl", "<cmd>Trouble loclist toggle<CR>", { desc = "Trouble: Location List" })
+map("n", "<leader>xq", "<cmd>Trouble quickfix toggle<CR>", { desc = "Trouble: Quickfix List" })
+
 -- Linting mappings
 map("n", "<leader>l", "<cmd>lua require('lint').try_lint()<CR>", { desc = "Trigger linting for current file" })
 

@@ -221,6 +221,14 @@ return {
     end,
   },
 
+  -- trouble.nvim — Better diagnostics list with workspace-wide errors/warnings
+  {
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+    cmd = "Trouble",
+    opts = {},
+  },
+
   -- avante.nvim — AI chat inside neovim (Claude/GPT context-aware code editing)
   {
     "yetone/avante.nvim",
