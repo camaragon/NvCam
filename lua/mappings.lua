@@ -61,6 +61,11 @@ map(
   { desc = "Toggle Floating Term" }
 )
 
+-- Spectre mappings (project-wide find & replace)
+map("n", "<leader>sr", "<cmd>lua require('spectre').open()<CR>", { desc = "Spectre: Open search & replace" })
+map("n", "<leader>sw", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", { desc = "Spectre: Search current word" })
+map("v", "<leader>sw", "<esc><cmd>lua require('spectre').open_visual()<CR>", { desc = "Spectre: Search selection" })
+
 -- Trouble mappings
 map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Trouble: Workspace Diagnostics" })
 map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Trouble: Buffer Diagnostics" })

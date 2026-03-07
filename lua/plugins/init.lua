@@ -221,6 +221,14 @@ return {
     end,
   },
 
+  -- nvim-spectre — Project-wide find and replace with regex + live preview
+  {
+    "nvim-pack/nvim-spectre",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    cmd = "Spectre",
+    opts = {},
+  },
+
   -- trouble.nvim — Better diagnostics list with workspace-wide errors/warnings
   {
     "folke/trouble.nvim",
