@@ -1,7 +1,8 @@
 require "nvchad.mappings"
 
 local map = vim.keymap.set
-local emptyMap = "nil"
+-- Remove unwanted NvChad default mappings
+pcall(vim.keymap.del, "n", "<leader>lf")
 local hop = require "hop"
 local directions = require("hop.hint").HintDirection
 
@@ -48,7 +49,7 @@ map("n", "<leader>gs", ":Git<CR>", { desc = "Git status" })
 
 -- Lspconfig mappings
 map("n", "<leader>f", "<cmd>lua vim.diagnostic.open_float({border = 'rounded' })<CR>", { desc = "Open LSP float" })
-map("n", "<leader>lf", emptyMap)
+
 map("n", "K", vim.lsp.buf.hover, { desc = "Show hover doc" })
 
 -- Nvterm mappings
