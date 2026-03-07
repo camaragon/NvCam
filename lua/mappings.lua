@@ -110,9 +110,3 @@ map("n", "zK", function()
     vim.lsp.buf.hover()
   end
 end, { desc = "Peek Fold" })
-
-require("ufo").setup {
-  provider_selector = function(bufnr, filetype, buftype)
-    return { "lsp", "indent" }
-  end,
-}
