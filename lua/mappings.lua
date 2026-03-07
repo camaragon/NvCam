@@ -84,5 +84,9 @@ map("n", "<leader>xl", "<cmd>Trouble loclist toggle<CR>", { desc = "Trouble Loca
 map("n", "<leader>xq", "<cmd>Trouble quickfix toggle<CR>", { desc = "Trouble Quickfix list" })
 
 -- ── Avante (AI) ─────────────────────────────────────────────────────
--- Avante keybindings are defined in plugin opts (plugins/init.lua)
--- <leader>aa = Ask AI | <leader>ae = AI Edit | <leader>at = Toggle panel
+map("n", "<leader>aa", function() require("avante.api").ask() end, { desc = "AI Ask about code" })
+map("v", "<leader>aa", function() require("avante.api").ask() end, { desc = "AI Ask about selection" })
+map("n", "<leader>ae", function() require("avante.api").edit() end, { desc = "AI Edit code" })
+map("v", "<leader>ae", function() require("avante.api").edit() end, { desc = "AI Edit selection" })
+map("n", "<leader>ar", function() require("avante.api").refresh() end, { desc = "AI Refresh response" })
+map("n", "<leader>at", function() require("avante.api").toggle() end, { desc = "AI Toggle panel" })

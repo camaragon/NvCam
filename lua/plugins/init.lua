@@ -273,6 +273,7 @@ return {
       copilot = {
         model = "claude-sonnet-4.6",
       },
+      -- Keybindings defined in mappings.lua for cheatsheet visibility
       mappings = {
         ask = "<leader>aa",
         edit = "<leader>ae",
