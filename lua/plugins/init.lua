@@ -221,6 +221,34 @@ return {
     end,
   },
 
+  -- avante.nvim — AI chat inside neovim (Claude/GPT context-aware code editing)
+  {
+    "yetone/avante.nvim",
+    event = "VeryLazy",
+    version = false,
+    build = "make",
+    dependencies = {
+      "nvim-treesitter/nvim-treesitter",
+      "stevearc/dressing.nvim",
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+    },
+    opts = {
+      provider = "copilot",
+      copilot = {
+        model = "claude-3.5-sonnet",
+      },
+      mappings = {
+        ask = "<leader>aa",
+        edit = "<leader>ae",
+        refresh = "<leader>ar",
+        toggle = {
+          default = "<leader>at",
+        },
+      },
+    },
+  },
+
   -- "nvim-lua/plenary.nvim",
   --
   -- {
