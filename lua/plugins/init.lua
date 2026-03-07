@@ -260,7 +260,7 @@ return {
     opts = {
       provider = "copilot",
       copilot = {
-        model = "claude-3.5-sonnet",
+        model = "claude-sonnet-4.6",
       },
       mappings = {
         ask = "<leader>aa",
