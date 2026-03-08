@@ -71,6 +71,7 @@ return {
 
         -- low level
         "c",
+        "rust",
         "zig",
         "python",
         "prisma",
@@ -140,7 +141,17 @@ return {
     end,
   },
 
-  { "kevinhwang91/nvim-ufo", dependencies = "kevinhwang91/promise-async" },
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = "kevinhwang91/promise-async",
+    config = function()
+      require("ufo").setup {
+        provider_selector = function(bufnr, filetype, buftype)
+          return { "lsp", "indent" }
+        end,
+      }
+    end,
+  },
 
   {
     "saecki/crates.nvim",
@@ -262,6 +273,7 @@ return {
       copilot = {
         model = "claude-sonnet-4.6",
       },
+      -- Keybindings defined in mappings.lua for cheatsheet visibility
       mappings = {
         ask = "<leader>aa",
         edit = "<leader>ae",

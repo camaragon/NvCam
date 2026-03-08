@@ -38,16 +38,15 @@ lint.linters_by_ft = {
   python = { "ruff" },
 }
 
--- Conditionally add eslint_d for JS/TS files
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWritePost" }, {
+-- Conditionally add eslint_d for JS/TS files (runs once on FileType, not every BufEnter)
+local js_filetypes = { javascript = true, javascriptreact = true, typescript = true, typescriptreact = true }
+
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
   callback = function()
     local ft = vim.bo.filetype
-    if ft == "javascript" or ft == "javascriptreact" or ft == "typescript" or ft == "typescriptreact" then
-      if has_eslint_config() then
-        lint.linters_by_ft[ft] = { "eslint_d" }
-      else
-        lint.linters_by_ft[ft] = {}
-      end
+    if js_filetypes[ft] then
+      lint.linters_by_ft[ft] = has_eslint_config() and { "eslint_d" } or {}
     end
   end,
 })
