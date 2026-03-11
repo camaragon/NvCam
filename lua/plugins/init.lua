@@ -270,8 +270,10 @@ return {
     },
     opts = {
       provider = "copilot",
-      copilot = {
-        model = "claude-sonnet-4.6",
+      providers = {
+        copilot = {
+          model = "claude-sonnet-4.6",
+        },
       },
       -- Keybindings defined in mappings.lua for cheatsheet visibility
       mappings = {

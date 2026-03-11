@@ -30,9 +30,9 @@ map("", "t", function() hop.hint_char1 { direction = directions.AFTER_CURSOR, cu
 map("", "T", function() hop.hint_char1 { direction = directions.BEFORE_CURSOR, current_line_only = true, hint_offset = 1 } end, { remap = true, desc = "Hop Till char backward" })
 
 -- ── LSP ──────────────────────────────────────────────────────────────
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP Code action" })
-map("n", "<leader>f", "<cmd>lua vim.diagnostic.open_float({border = 'rounded' })<CR>", { desc = "LSP Open diagnostic float" })
-map("n", "K", vim.lsp.buf.hover, { desc = "LSP Hover docs" })
+map("n", "<leader>ca", function() vim.lsp.buf.code_action() end, { desc = "LSP Code action" })
+map("n", "<leader>f", function() vim.diagnostic.open_float({ border = "rounded" }) end, { desc = "LSP Open diagnostic float" })
+map("n", "K", function() vim.lsp.buf.hover() end, { desc = "LSP Hover docs" })
 map("n", "<leader>fm", function() require("conform").format() end, { desc = "LSP Format file (conform)" })
 map("n", "<leader>l", "<cmd>lua require('lint').try_lint()<CR>", { desc = "LSP Trigger linting" })
 
