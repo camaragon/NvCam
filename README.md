@@ -84,25 +84,7 @@ After first launch:
 
 Leader: `<Space>`
 
-### General
-| Key | Action |
-|-----|--------|
-| `;` | Command mode |
-| `jk` | Exit insert mode |
-| `<leader>s` | Save |
-| `<leader>q` | Force quit |
-| `<leader>rp` | Copy relative file path |
-
-### Navigation
-| Key | Action |
-|-----|--------|
-| `-` | Oil file browser |
-| `<leader>ff` | Find files (Telescope) |
-| `<leader>fg` | Live grep (Telescope) |
-| `<leader>w` | Hop to word |
-| `<leader>g` | Hop vertical |
-| `f/F/t/T` | Hop character (current line) |
-| `<C-h/j/k/l>` | Navigate Neovim/tmux panes |
+Sections: Code, Debug, Folding, General, Git, Java, Navigation, Session, Tasks, Terminal.
 
 ### Code
 | Key | Action |
@@ -115,76 +97,93 @@ Leader: `<Space>`
 | `gd` | Go to definition |
 | `gD` | Go to declaration |
 
-### Folding (UFO)
-| Key | Action |
-|-----|--------|
-| `zR` | Open all folds |
-| `zM` | Close all folds |
-| `zK` | Peek fold |
-
-### Git
-| Key | Action |
-|-----|--------|
-| `<leader>gs` | Git status |
-| `<leader>gl` | Git blame (all lines) |
-| `<leader>gg` | Toggle inline blame |
-| `<leader>di` | Vertical diff |
-
 ### Debug (DAP)
 | Key | Action |
 |-----|--------|
-| `<leader>db` | Toggle breakpoint |
 | `<leader>dB` | Conditional breakpoint |
+| `<leader>db` | Toggle breakpoint |
 | `<leader>dc` | Continue |
-| `<leader>ds` | Step over |
-| `<leader>dsi` | Step into |
-| `<leader>do` | Step out |
+| `<leader>dg` | Run to cursor |
 | `<leader>dl` | Log point |
+| `<leader>do` | Step out |
 | `<leader>dr` | Open debug REPL |
 | `<leader>dR` | Restart debug session |
-| `<leader>dg` | Run to cursor |
+| `<leader>ds` | Step over |
+| `<leader>dsi` | Step into |
 | `<leader>dt` | Terminate debug session |
 | `<leader>du` | Toggle debug UI |
 | `<leader>dus` | Open debug sidebar |
 
-### Java / Spring Boot Debugging
+### Folding
+| Key | Action |
+|-----|--------|
+| `zK` | Peek fold |
+| `zM` | Close all folds |
+| `zR` | Open all folds |
 
-Java debugging uses `nvim-jdtls` with Mason's `jdtls`, `java-debug-adapter`, and `java-test` packages.
+### General
+| Key | Action |
+|-----|--------|
+| `;` | Command mode |
+| `jk` | Exit insert mode |
+| `<leader>q` | Force quit |
+| `<leader>rp` | Copy relative file path |
+| `<leader>s` | Save |
+
+### Git
+| Key | Action |
+|-----|--------|
+| `<leader>di` | Vertical diff |
+| `<leader>gg` | Toggle inline blame |
+| `<leader>gl` | Git blame (all lines) |
+| `<leader>gs` | Git status |
+
+### Java
+| Key | Action |
+|-----|--------|
+| `<leader>jor` | Organize imports |
+| `<leader>jtc` | Test current class |
+| `<leader>jtn` | Test nearest method |
+
+Spring Boot debugging:
 
 1. Open a `.java` file from the Spring Boot project root.
 2. Wait for JDTLS to import the Maven/Gradle project.
 3. Set a breakpoint with `<leader>db`.
 4. Start with `<leader>dc`; JDTLS will discover Spring Boot main classes and prompt for a launch configuration.
 
-Java helpers:
-
+### Navigation
 | Key | Action |
 |-----|--------|
-| `<leader>jtc` | Test current class |
-| `<leader>jtn` | Test nearest method |
-| `<leader>jor` | Organize imports |
-
-### Terminal
-| Key | Action |
-|-----|--------|
-| `<leader>h` | Horizontal tmux split |
-| `<leader>v` | Vertical tmux split |
-| `<leader>ft` | Floating terminal |
+| `-` | Oil file browser |
+| `<C-h/j/k/l>` | Navigate Neovim/tmux panes |
+| `<leader>ff` | Find files (Telescope) |
+| `<leader>fg` | Live grep (Telescope) |
+| `<leader>g` | Hop vertical |
+| `<leader>w` | Hop to word |
+| `f/F/t/T` | Hop character (current line) |
 
 ### Session
 | Key | Action |
 |-----|--------|
-| `<leader>qs` | Restore session for current directory |
-| `<leader>ql` | Restore last session |
 | `<leader>qd` | Stop session persistence |
+| `<leader>ql` | Restore last session |
+| `<leader>qs` | Restore session for current directory |
 
 ### Tasks
 | Key | Action |
 |-----|--------|
+| `<leader>oc` | Run shell command as task |
+| `<leader>oq` | Task quick action |
 | `<leader>or` | Run task |
 | `<leader>ot` | Toggle task list |
-| `<leader>oq` | Task quick action |
-| `<leader>oc` | Run shell command as task |
+
+### Terminal
+| Key | Action |
+|-----|--------|
+| `<leader>ft` | Floating terminal |
+| `<leader>h` | Horizontal tmux split |
+| `<leader>v` | Vertical tmux split |
 
 ## Formatter Auto-Detection
 
