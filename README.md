@@ -134,12 +134,17 @@ Leader: `<Space>`
 | Key | Action |
 |-----|--------|
 | `<leader>db` | Toggle breakpoint |
+| `<leader>dB` | Conditional breakpoint |
 | `<leader>dc` | Continue |
 | `<leader>ds` | Step over |
 | `<leader>dsi` | Step into |
 | `<leader>do` | Step out |
+| `<leader>dl` | Log point |
 | `<leader>dr` | Open debug REPL |
+| `<leader>dR` | Restart debug session |
+| `<leader>dg` | Run to cursor |
 | `<leader>dt` | Terminate debug session |
+| `<leader>du` | Toggle debug UI |
 | `<leader>dus` | Open debug sidebar |
 
 ### Java / Spring Boot Debugging
@@ -166,13 +171,28 @@ Java helpers:
 | `<leader>v` | Vertical tmux split |
 | `<leader>ft` | Floating terminal |
 
+### Session
+| Key | Action |
+|-----|--------|
+| `<leader>qs` | Restore session for current directory |
+| `<leader>ql` | Restore last session |
+| `<leader>qd` | Stop session persistence |
+
+### Tasks
+| Key | Action |
+|-----|--------|
+| `<leader>or` | Run task |
+| `<leader>ot` | Toggle task list |
+| `<leader>oq` | Task quick action |
+| `<leader>oc` | Run shell command as task |
+
 ## Formatter Auto-Detection
 
 Formatters are selected per-project:
 
 - **`biome.json` exists** → Biome for JS/TS/CSS/JSON/GraphQL
 - **No biome.json** → Prettier (via prettierd) as fallback
-- **Rust** → rust-analyzer format on save
+- **Rust** → rust-analyzer via LSP fallback
 - **Python** → Ruff format + import organization
 - **Lua** → Stylua
 
