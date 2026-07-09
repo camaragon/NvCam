@@ -250,6 +250,27 @@ return {
     opts = {},
   },
 
+  -- overseer.nvim — Project task runner for build/test/dev commands
+  {
+    "stevearc/overseer.nvim",
+    cmd = {
+      "OverseerBuild",
+      "OverseerClearCache",
+      "OverseerClose",
+      "OverseerDeleteBundle",
+      "OverseerInfo",
+      "OverseerLoadBundle",
+      "OverseerOpen",
+      "OverseerQuickAction",
+      "OverseerRun",
+      "OverseerRunCmd",
+      "OverseerSaveBundle",
+      "OverseerTaskAction",
+      "OverseerToggle",
+    },
+    opts = {},
+  },
+
   -- trouble.nvim — Better diagnostics list with workspace-wide errors/warnings
   {
     "folke/trouble.nvim",

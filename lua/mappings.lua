@@ -105,6 +105,12 @@ map("n", "<leader>sr", "<cmd>lua require('spectre').open()<CR>", { desc = "Spect
 map("n", "<leader>sw", "<cmd>lua require('spectre').open_visual({select_word=true})<CR>", { desc = "Spectre Search current word" })
 map("v", "<leader>sw", "<esc><cmd>lua require('spectre').open_visual()<CR>", { desc = "Spectre Search selection" })
 
+-- ── Tasks ───────────────────────────────────────────────────────────
+map("n", "<leader>or", "<cmd>OverseerRun<CR>", { desc = "Tasks Run" })
+map("n", "<leader>ot", "<cmd>OverseerToggle<CR>", { desc = "Tasks Toggle" })
+map("n", "<leader>oq", "<cmd>OverseerQuickAction<CR>", { desc = "Tasks Quick action" })
+map("n", "<leader>oc", "<cmd>OverseerRunCmd<CR>", { desc = "Tasks Run command" })
+
 -- ── Trouble (diagnostics) ───────────────────────────────────────────
 map("n", "<leader>xx", "<cmd>Trouble diagnostics toggle<CR>", { desc = "Trouble Workspace diagnostics" })
 map("n", "<leader>xd", "<cmd>Trouble diagnostics toggle filter.buf=0<CR>", { desc = "Trouble Buffer diagnostics" })
