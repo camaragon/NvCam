@@ -14,15 +14,6 @@ autocmd("LspAttach", {
       client.server_capabilities.semanticTokensProvider = nil
     end
 
-    -- Enable format-on-save only for Rust
-    if client.name == "rust_analyzer" then
-      autocmd("BufWritePre", {
-        buffer = args.buf,
-        callback = function()
-          vim.lsp.buf.format { async = false }
-        end,
-      })
-    end
   end,
 })
 

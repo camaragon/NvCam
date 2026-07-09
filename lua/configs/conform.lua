@@ -33,7 +33,7 @@ local options = {
     typescriptreact = get_formatter,
     vue = get_formatter,
     graphql = get_formatter,
-    python = { "ruff_format", "ruff_organize_imports" },
+    python = { "ruff_organize_imports", "ruff_format" },
     yaml = { "prettierd", "prettier", stop_after_first = true },
     xml = { "xmlformat" },
     markdown = get_formatter,

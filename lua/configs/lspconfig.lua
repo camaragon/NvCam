@@ -27,6 +27,8 @@ vim.lsp.config("lua_ls", {
 })
 
 -- Enable all servers
+-- Java is intentionally managed by nvim-jdtls so its DAP bundles and project
+-- workspace can be configured per project.
 local servers = {
   "bashls",
   "biome",
