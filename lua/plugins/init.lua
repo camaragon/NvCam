@@ -99,6 +99,11 @@ return {
     lazy = false,
   },
 
+  {
+    "direnv/direnv.vim",
+    event = "VeryLazy",
+  },
+
   { "tpope/vim-fugitive", event = "BufRead" },
 
   {
