@@ -42,6 +42,10 @@ M.mason = {
 	},
 }
 
+M.cheatsheet = {
+	theme = "simple",
+}
+
 -- M.nvdash = { load_on_startup = true }
 -- M.ui = {
 --       tabufline = {
