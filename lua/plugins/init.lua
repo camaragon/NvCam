@@ -119,6 +119,14 @@ return {
   },
 
   {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    opts = {
+      options = { "buffers", "curdir", "tabpages", "winsize" },
+    },
+  },
+
+  {
     "smoka7/hop.nvim",
     version = "*",
     config = function()

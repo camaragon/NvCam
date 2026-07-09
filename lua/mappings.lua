@@ -81,6 +81,11 @@ map("n", "<leader>h", "<cmd>silent !tmux split-window -v<CR>", { desc = "Term Ho
 map("n", "<leader>v", "<cmd>silent !tmux split-window -h<CR>", { desc = "Term Vertical tmux split" })
 map("n", "<leader>ft", "<cmd>lua require('nvchad.term').toggle({pos = 'float', id = 'floatTerm'})<CR>", { desc = "Term Toggle floating terminal" })
 
+-- ── Session ─────────────────────────────────────────────────────────
+map("n", "<leader>qs", function() require("persistence").load() end, { desc = "Session Restore current directory" })
+map("n", "<leader>ql", function() require("persistence").load { last = true } end, { desc = "Session Restore last" })
+map("n", "<leader>qd", function() require("persistence").stop() end, { desc = "Session Stop persistence" })
+
 -- ── Rust (Crates) ───────────────────────────────────────────────────
 map("n", "<leader>rcu", function() require("crates").upgrade_all_crates() end, { desc = "Rust Upgrade all crates" })
 
