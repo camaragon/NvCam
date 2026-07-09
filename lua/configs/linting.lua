@@ -1,5 +1,17 @@
 local lint = require("lint")
 
+local function project_executable(name)
+  local path = vim.fn.findfile(name, vim.fn.getcwd() .. ";")
+  return path ~= "" and vim.fn.fnamemodify(path, ":p") or name
+end
+
+local ruff = lint.linters.ruff
+if ruff then
+  ruff.cmd = function()
+    return project_executable(".venv/bin/ruff")
+  end
+end
+
 -- Function to determine which linter to use based on project config
 local function has_eslint_config()
   local eslint_configs = {

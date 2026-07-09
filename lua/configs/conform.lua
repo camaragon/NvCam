@@ -1,3 +1,8 @@
+local function project_executable(name)
+  local path = vim.fn.findfile(name, vim.fn.getcwd() .. ";")
+  return path ~= "" and vim.fn.fnamemodify(path, ":p") or name
+end
+
 -- Optionally, define a function to choose a formatter based on the presence of a biome.json file.
 local function get_formatter()
   -- If a biome.json file is found in the current working directory, use the "biome" formatter.
@@ -37,6 +42,8 @@ local options = {
 
   -- Additional options for specific formatters.
   formatters = {
+    ruff_format = { command = function() return project_executable(".venv/bin/ruff") end },
+    ruff_organize_imports = { command = function() return project_executable(".venv/bin/ruff") end },
     latexindent = { prepend_args = { "-l", "-m", "--logfile=/dev/null" } },
     biome = {
       require_cwd = true,
