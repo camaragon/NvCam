@@ -38,22 +38,6 @@ return {
   },
 
   {
-    "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "rust-analyzer",
-        "prettier",
-        "stylua",
-        "typescript-language-server",
-        "luaformatter",
-        "pyright",
-        "ruff",
-        "debugpy",
-      },
-    },
-  },
-
-  {
     "nvim-treesitter/nvim-treesitter",
     opts = {
       ensure_installed = {
@@ -74,6 +58,7 @@ return {
         "rust",
         "zig",
         "python",
+        "java",
         "prisma",
         "yaml",
         "graphql",
@@ -229,6 +214,15 @@ return {
     dependencies = "mfussenegger/nvim-dap",
     config = function()
       require("dap-python").setup("python")
+    end,
+  },
+
+  {
+    "mfussenegger/nvim-jdtls",
+    ft = "java",
+    dependencies = "mfussenegger/nvim-dap",
+    config = function()
+      require "configs.jdtls"
     end,
   },
 

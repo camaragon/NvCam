@@ -14,6 +14,22 @@ M.base46 = {
 	},
 }
 
+M.mason = {
+	pkgs = {
+		"rust-analyzer",
+		"prettier",
+		"stylua",
+		"typescript-language-server",
+		"luaformatter",
+		"pyright",
+		"ruff",
+		"debugpy",
+		"jdtls",
+		"java-debug-adapter",
+		"java-test",
+	},
+}
+
 -- M.nvdash = { load_on_startup = true }
 -- M.ui = {
 --       tabufline = {

@@ -136,9 +136,28 @@ Leader: `<Space>`
 | `<leader>db` | Toggle breakpoint |
 | `<leader>dc` | Continue |
 | `<leader>ds` | Step over |
-| `<leader>di` | Step into |
+| `<leader>dsi` | Step into |
 | `<leader>do` | Step out |
+| `<leader>dr` | Open debug REPL |
+| `<leader>dt` | Terminate debug session |
 | `<leader>dus` | Open debug sidebar |
+
+### Java / Spring Boot Debugging
+
+Java debugging uses `nvim-jdtls` with Mason's `jdtls`, `java-debug-adapter`, and `java-test` packages.
+
+1. Open a `.java` file from the Spring Boot project root.
+2. Wait for JDTLS to import the Maven/Gradle project.
+3. Set a breakpoint with `<leader>db`.
+4. Start with `<leader>dc`; JDTLS will discover Spring Boot main classes and prompt for a launch configuration.
+
+Java helpers:
+
+| Key | Action |
+|-----|--------|
+| `<leader>jtc` | Test current class |
+| `<leader>jtn` | Test nearest method |
+| `<leader>jor` | Organize imports |
 
 ### Terminal
 | Key | Action |

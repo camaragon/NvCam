@@ -52,6 +52,24 @@ map("n", "<leader>di", ":vert Git diff<CR>", { desc = "Git Vertical diff" })
 
 -- ── Debug (DAP) ──────────────────────────────────────────────────────
 map("n", "<leader>db", "<cmd> DapToggleBreakpoint <CR>", { desc = "Debug Toggle breakpoint" })
+map("n", "<leader>dc", function()
+  require("dap").continue()
+end, { desc = "Debug Continue" })
+map("n", "<leader>ds", function()
+  require("dap").step_over()
+end, { desc = "Debug Step over" })
+map("n", "<leader>dsi", function()
+  require("dap").step_into()
+end, { desc = "Debug Step into" })
+map("n", "<leader>do", function()
+  require("dap").step_out()
+end, { desc = "Debug Step out" })
+map("n", "<leader>dr", function()
+  require("dap").repl.open()
+end, { desc = "Debug Open REPL" })
+map("n", "<leader>dt", function()
+  require("dap").terminate()
+end, { desc = "Debug Terminate" })
 map("n", "<leader>dus", function()
   local widgets = require "dap.ui.widgets"
   local sidebar = widgets.sidebar(widgets.scopes)
@@ -65,6 +83,11 @@ map("n", "<leader>ft", "<cmd>lua require('nvchad.term').toggle({pos = 'float', i
 
 -- ── Rust (Crates) ───────────────────────────────────────────────────
 map("n", "<leader>rcu", function() require("crates").upgrade_all_crates() end, { desc = "Rust Upgrade all crates" })
+
+-- ── Java ────────────────────────────────────────────────────────────
+map("n", "<leader>jtc", function() require("jdtls").test_class() end, { desc = "Java Test class" })
+map("n", "<leader>jtn", function() require("jdtls").test_nearest_method() end, { desc = "Java Test nearest method" })
+map("n", "<leader>jor", function() require("jdtls").organize_imports() end, { desc = "Java Organize imports" })
 
 -- ── Todo Comments ───────────────────────────────────────────────────
 map("n", "<leader>td", "<cmd>TodoTelescope<CR>", { desc = "Todo Search all TODOs" })
